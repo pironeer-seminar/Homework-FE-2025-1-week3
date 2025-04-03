@@ -1,6 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import homeCSS from '../public/css/Home.module.css';
 import '../public/css/reset.css';
+
+import { useNavigate } from 'react-router-dom';
+
+import homeCSS from '../public/css/Home.module.css';
 
 function Home() {
   const navigate = useNavigate();
@@ -24,13 +26,13 @@ function Home() {
                 <div className={homeCSS.btn_guest}>게스트로 시작</div>
                 <div
                   className={homeCSS.btn_join}
-                  onClick={() => navigate(`/join`)}
+                  onClick={() => void navigate(`/join`)}
                 >
                   회원가입
                 </div>
                 <a
                   className={homeCSS.btn_login}
-                  onClick={() => navigate(`/login`)}
+                  onClick={() => void navigate(`/login`)}
                 >
                   로그인
                 </a>

@@ -18,3 +18,8 @@
   color: gainsboro;
   cursor: pointer;
 }
+.title {
+  margin-left: 177px;
+  font-weight: 700;
+  font-size: 20px;
+}

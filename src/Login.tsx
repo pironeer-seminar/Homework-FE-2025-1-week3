@@ -1,9 +1,11 @@
+import '../public/css/reset.css';
+
+import { ChevronLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
 import homeCSS from '../public/css/Home.module.css';
 import joinCSS from '../public/css/Join.module.css';
 import loginCSS from '../public/css/Login.module.css';
-import '../public/css/reset.css';
-import { ChevronLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
@@ -16,14 +18,14 @@ function Login() {
             <div className={joinCSS.join_navBar}>
               <div
                 className={joinCSS.return_btn}
-                onClick={() => navigate(`/`)}
+                onClick={() => void navigate(`/`)}
               >
                 <ChevronLeft
                   color="black"
                   size={32}
                 />
               </div>
-              <div className={joinCSS.title}>로그인</div>
+              <div className={loginCSS.title}>로그인</div>
             </div>
             <div className={joinCSS.join_registerInputs}>
               <input

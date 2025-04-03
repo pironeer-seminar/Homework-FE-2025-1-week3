@@ -1,8 +1,10 @@
-import homeCSS from '../public/css/Home.module.css';
-import joinCSS from '../public/css/Join.module.css';
 import '../public/css/reset.css';
+
 import { ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+
+import homeCSS from '../public/css/Home.module.css';
+import joinCSS from '../public/css/Join.module.css';
 
 function Join() {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ function Join() {
             <div className={joinCSS.join_navBar}>
               <div
                 className={joinCSS.return_btn}
-                onClick={() => navigate(`/`)}
+                onClick={() => void navigate(`/`)}
               >
                 <ChevronLeft
                   color="black"

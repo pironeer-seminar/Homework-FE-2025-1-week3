@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import Home from './Home.tsx';
 import Join from './Join.tsx';
 import Login from './Login.tsx';
