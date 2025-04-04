@@ -1,6 +1,13 @@
 const TOKEN_LOCAL_STORAGE_KEY = 'kyeongmin_todo_token';
 const USER_KEY = 'login_user';
 
+export interface UserType {
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+}
+
 export const TokenLocalStorageRepository = {
   getToken: () => {
     return localStorage.getItem(TOKEN_LOCAL_STORAGE_KEY);
@@ -11,21 +18,22 @@ export const TokenLocalStorageRepository = {
 };
 
 export const UserLocalStorageRepository = {
-  setUser: (user: { name: string; email: string }) => {
+  setUser: (user: UserType) => {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   },
-  getUser: (): { name: string; email: string } | null => {
+  getUser: (): UserType | null => {
     const value = localStorage.getItem(USER_KEY);
     if (value === null) {
       return null;
     }
     try {
-      return JSON.parse(value) as { name: string; email: string };
+      return JSON.parse(value) as UserType;
     } catch {
       return null;
     }
   },
   clearUser: () => {
     localStorage.removeItem(USER_KEY);
+    localStorage.removeItem('token');
   },
 };

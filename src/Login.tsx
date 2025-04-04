@@ -12,7 +12,7 @@ import { TokenLocalStorageRepository } from './repository/localstorage';
 import { UserLocalStorageRepository } from './repository/localstorage';
 
 type UserWithToken = {
-  id: number;
+  id: string;
   name: string;
   email: string;
   token: string;
@@ -95,11 +95,8 @@ function Login() {
             setResponseMessage(response.message);
             return;
           }
-          setUser({ name: response.data.name, email: response.data.email });
-          UserLocalStorageRepository.setUser({
-            name: response.data.name,
-            email: response.data.email,
-          });
+          setUser(response.data);
+          UserLocalStorageRepository.setUser(response.data);
           setToken({ token: response.data.token });
           void navigate('/mypage');
         }

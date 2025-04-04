@@ -7,12 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import homeCSS from '../public/css/Home.module.css';
 import joinCSS from '../public/css/Join.module.css';
 import { api } from './api/index';
+import { useAuth } from './context/AuthContext';
 
 function Join() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const { login } = useAuth();
 
   interface SignUpResponse {
     id: string;
@@ -38,12 +40,12 @@ function Join() {
     });
 
     if (result.type === 'error') {
-      console.error('회원가입 실패: ', result.message);
       alert(result.message);
       return;
     }
 
     localStorage.setItem('token', result.data.token);
+    login(result.data); // 로그인 상태 저장하기
     void navigate('/mypage');
   };
 

@@ -5,19 +5,26 @@ import { useEffect, useState } from 'react';
 
 import homeCSS from '../public/css/Home.module.css';
 import myPageCSS from '../public/css/MyPage.module.css';
+import { useAuth } from './context/AuthContext';
 import { UserLocalStorageRepository } from './repository/localstorage';
 
 function MyPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const { user } = useAuth();
 
   useEffect(() => {
-    const user = UserLocalStorageRepository.getUser();
     if (user) {
       setName(user.name);
       setEmail(user.email);
+    } else {
+      const stored = UserLocalStorageRepository.getUser();
+      if (stored) {
+        setName(stored.name);
+        setEmail(stored.email);
+      }
     }
-  }, []);
+  }, [user]);
 
   return (
     <>
