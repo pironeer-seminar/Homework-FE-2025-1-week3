@@ -1,5 +1,5 @@
 import { User } from 'lucide-react';
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 
 import type { UserType } from '../repository/localstorage';
 import { UserLocalStorageRepository } from '../repository/localstorage';
@@ -44,10 +44,4 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   );
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within AuthProvider');
-  }
-  return context;
-};
+export { AuthContext };

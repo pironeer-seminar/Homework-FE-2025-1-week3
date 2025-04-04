@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import homeCSS from '../public/css/Home.module.css';
 import myPageCSS from '../public/css/MyPage.module.css';
-import { useAuth } from './context/AuthContext';
+import { useAuth } from './context/useAuth';
 import { UserLocalStorageRepository } from './repository/localstorage';
 
 function MyPage() {

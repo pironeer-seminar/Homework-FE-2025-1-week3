@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import homeCSS from '../public/css/Home.module.css';
 import joinCSS from '../public/css/Join.module.css';
 import { api } from './api/index';
-import { useAuth } from './context/AuthContext';
+import { useAuth } from './context/useAuth';
 
 function Join() {
   const navigate = useNavigate();
