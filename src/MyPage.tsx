@@ -41,7 +41,7 @@ function MyPage() {
               <div className={myPageCSS.user_info_container}>
                 <div className={myPageCSS.img_background}>
                   <div className={myPageCSS.img_container}>
-                    <img src="../public/img/todomate_white.png" />
+                    <img src="/img/todomate_white.png" />
                   </div>
                 </div>
                 <div className={myPageCSS.user_name_email}>

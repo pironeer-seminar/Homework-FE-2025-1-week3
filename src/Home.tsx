@@ -14,7 +14,7 @@ function Home() {
           <div className={homeCSS.home_inner_container}>
             <div className={homeCSS.home_top}>
               <div className={homeCSS.logo_container}>
-                <img src="public/img/todomate_black.png" />
+                <img src="/img/todomate_black.png" />
               </div>
               <h1 className={homeCSS.title}>todo mate</h1>
               <p className={homeCSS.info}>
