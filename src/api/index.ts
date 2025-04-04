@@ -1,6 +1,6 @@
 const API_URL = 'https://server.survey-josha.site/api';
 
-export type Response<TData> =
+type Response<TData> =
   | {
       type: 'success';
       data: TData;
