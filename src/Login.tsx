@@ -1,6 +1,6 @@
 import '../public/css/reset.css';
 
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ import joinCSS from '../public/css/Join.module.css';
 import loginCSS from '../public/css/Login.module.css';
 import { api } from './api/index';
 import { TokenLocalStorageRepository } from './repository/localstorage';
+import { UserLocalStorageRepository } from './repository/localstorage';
 
 type UserWithToken = {
   id: number;
@@ -95,6 +96,10 @@ function Login() {
             return;
           }
           setUser({ name: response.data.name, email: response.data.email });
+          UserLocalStorageRepository.setUser({
+            name: response.data.name,
+            email: response.data.email,
+          });
           setToken({ token: response.data.token });
           void navigate('/mypage');
         }

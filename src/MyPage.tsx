@@ -1,11 +1,24 @@
 import '../public/css/reset.css';
 
 import { Bell, Compass, House, Settings, User } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import homeCSS from '../public/css/Home.module.css';
 import myPageCSS from '../public/css/MyPage.module.css';
+import { UserLocalStorageRepository } from './repository/localstorage';
 
 function MyPage() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const user = UserLocalStorageRepository.getUser();
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+    }
+  }, []);
+
   return (
     <>
       <section className={homeCSS.mobile_frame}>
@@ -25,8 +38,8 @@ function MyPage() {
                   </div>
                 </div>
                 <div className={myPageCSS.user_name_email}>
-                  <span className={myPageCSS.user_name}>아무말</span>
-                  <span className={myPageCSS.user_email}>아무말</span>
+                  <span className={myPageCSS.user_name}>{name}</span>
+                  <span className={myPageCSS.user_email}>{email}</span>
                 </div>
               </div>
             </div>
@@ -34,38 +47,38 @@ function MyPage() {
               <div className={myPageCSS.nav_menu_1}>
                 <div className={myPageCSS.nav_menu_1_img}>
                   <House
-                    color="black"
-                    size={48}
+                    color="gray"
+                    size={32}
                   />
                 </div>
-                <div className={myPageCSS.nav_menu_1_title}></div>
+                <div className={myPageCSS.nav_menu_1_title}>피드</div>
               </div>
               <div className={myPageCSS.nav_menu_2}>
                 <div className={myPageCSS.nav_menu_2_img}>
                   <Compass
-                    color="black"
-                    size={48}
+                    color="gray"
+                    size={32}
                   />
                 </div>
-                <div className={myPageCSS.nav_menu_2_title}></div>
+                <div className={myPageCSS.nav_menu_2_title}>둘러보기</div>
               </div>
               <div className={myPageCSS.nav_menu_3}>
                 <div className={myPageCSS.nav_menu_3_img}>
                   <Bell
-                    color="black"
-                    size={48}
+                    color="gray"
+                    size={32}
                   />
                 </div>
-                <div className={myPageCSS.nav_menu_3_title}></div>
+                <div className={myPageCSS.nav_menu_3_title}>알림</div>
               </div>
               <div className={myPageCSS.nav_menu_4}>
                 <div className={myPageCSS.nav_menu_4_img}>
                   <User
                     color="black"
-                    size={48}
+                    size={32}
                   />
                 </div>
-                <div className={myPageCSS.nav_menu_4_title}></div>
+                <div className={myPageCSS.nav_menu_4_title}>My</div>
               </div>
             </div>
           </div>
