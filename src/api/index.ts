@@ -1,4 +1,6 @@
-type Response<TData> =
+const API_URL = 'https://server.survey-josha.site/api';
+
+export type Response<TData> =
   | {
       type: 'success';
       data: TData;
@@ -8,7 +10,18 @@ type Response<TData> =
       message: string;
     };
 
-const API_URL = 'https://server.survey-josha.site/api';
+interface APIValidationError {
+  loc: (string | number)[];
+  msg: string;
+  type: string;
+}
+
+type APIErrorDetail = APIValidationError[] | string;
+
+interface APIErrorData {
+  detail?: APIErrorDetail;
+  message?: string;
+}
 
 export const api = async <TData>({
   path,
@@ -31,9 +44,24 @@ export const api = async <TData>({
   });
 
   if (!response.ok) {
+    let message = response.statusText;
+    try {
+      const errorData = (await response.json()) as APIErrorData;
+
+      if (Array.isArray(errorData.detail)) {
+        message = errorData.detail.map((d) => d.msg).join(', ');
+      } else if (typeof errorData.detail === 'string') {
+        message = errorData.detail;
+      } else if (typeof errorData.message === 'string') {
+        message = errorData.message;
+      }
+    } catch (e) {
+      console.error('에러 메세지 파싱 실패', e);
+    }
+
     return {
       type: 'error',
-      message: response.statusText,
+      message,
     };
   }
 
